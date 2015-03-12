@@ -17,11 +17,16 @@
       "src": "webclip-128x128.png",
       "sizes": "128",
       "type": "image/png"
-    },    
+    },
+    {
+      "src": "webclip-144x144.png",
+      "sizes": "144",
+      "type": "image/png"
+    },     
     {
       "src": "webclip-196x196.png",
       "sizes": "196",
-      "type": "image/png".
+      "type": "image/png",
       "density": "3.0"
     }
   ],
