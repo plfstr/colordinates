@@ -1,1 +1,65 @@
-!function(){var t=document.getElementById("huebutton"),o=document.getElementById("output");if(navigator.geolocation){var e,n,a,r,d,s=1.8;e=function(){navigator.geolocation.getCurrentPosition(a,n,{timeout:30000,maximumAge:600000})},n=function(t){o.textContent="Geolocation failed! Check settings and signal. Reload page and try again.",alert("Error - "+t.message),o.focus()},a=function(t){r=Math.round(t.coords.longitude>0?t.coords.longitude:t.coords.longitude- -360),d=Math.round(t.coords.latitude>0?(180-Math.round(t.coords.latitude)-90)/s:(180-(Math.round(t.coords.latitude)- -90))/s);var e="hsla("+r+","+d+"%,50%,1)";o.setAttribute("style","background-color: "+e),o.innerHTML='<div class="color txt-small notranslate">'+e+"</div>",o.focus()},t.addEventListener("click",e,!1)}else o.textContent="This app uses features not supported by your browser",o.focus()}();
+var domButton = document.getElementById("huebutton"),
+  domOutput = document.getElementById("output"),
+  domLocale = document.getElementById("longlat"),
+  lightUnit = 180 / 100,
+  longHue,
+  latSat;
+
+if (navigator.geolocation) {
+
+  if (navigator.permissions) {
+    navigator.permissions.query({
+      name: 'geolocation'
+    }).then(function(permissionStatus) {
+
+      if (permissionStatus.state === 'prompt' || 'denied') {
+        domOutput.textContent = "App requires geolocation. Allow location when prompted by your browser.";
+      }
+
+    });
+  }
+
+  function fetchGeo(position) {
+    navigator.geolocation.getCurrentPosition(makeColor, errorFeedback, {
+      timeout: 30000,
+      maximumAge: 600000
+    });
+  }
+
+  function errorFeedback(error) {
+    domOutput.textContent = "Geolocation failed! Check settings and signal. Reload page and try again.";
+    alert('Error - ' + error.message);
+    domOutput.focus();
+  }
+
+  function makeColor(position) {
+
+    // Make Hue
+    if (position.coords.longitude > 0) {
+      longHue = Math.round(position.coords.longitude);
+    } else {
+      longHue = Math.round(position.coords.longitude - -180 * 2);
+    }
+
+    // Make lightness
+    if (position.coords.latitude > 0) {
+      latSat = Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
+    } else {
+      latSat = Math.round((180 - (Math.round(position.coords.latitude) - -90)) / lightUnit); // Southern Latitude – Needs to range from 90 – 180
+    }
+
+    var domColorvalue = document.createElement('div'),
+        domOutputcolour = "hsla(" + longHue + ", " + latSat + "%, 50%, 1)";
+
+    domColorvalue.className = 'color txt-small notranslate';
+    domColorvalue.textContent = domOutputcolour;
+    domOutput.setAttribute('style', 'background-color: ' + domOutputcolour);
+    domOutput.appendChild(domColorvalue);
+    domOutput.focus();
+  }
+
+  domButton.addEventListener('click', fetchGeo, false);
+} else {
+  domOutput.textContent = "This app uses features not supported by your browser";
+  domOutput.focus();
+}
