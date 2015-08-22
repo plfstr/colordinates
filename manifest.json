@@ -11,7 +11,7 @@
       "src": "webclip-128x128.png",
       "sizes": "64",
       "type": "image/png",
-      "density": "2.0"
+      "density": 2.0
     },
     {
       "src": "webclip-128x128.png",
@@ -27,7 +27,7 @@
       "src": "webclip-196x196.png",
       "sizes": "196",
       "type": "image/png",
-      "density": "3.0"
+      "density": 3.0
     }
   ],
   "start_url": "index.html",
