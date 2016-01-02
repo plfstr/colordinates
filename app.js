@@ -12,9 +12,19 @@ if (navigator.geolocation) {
       name: 'geolocation'
     }).then(function(permissionStatus) {
 
-      if (permissionStatus.state === 'prompt' || 'denied') {
-        domOutput.textContent = "App requires geolocation. Allow location when prompted by your browser.";
+      function permissionCheck() {
+      	if (permissionStatus.state === 'denied' || 'prompt') {
+        	domOutput.textContent = "App requires geolocation. Allow location when prompted by your browser.";
+      	}
+      	else if (permissionStatus.state === 'granted') {
+      		domOutput.textContent = "";
+      		domButton.setAttribute('disabled', true);
+      		fetchGeo();
+      	}
       }
+      permissionCheck();
+      
+      permissionStatus.onchange = permissionCheck;
 
     });
   }
