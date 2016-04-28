@@ -13,18 +13,19 @@ if (navigator.geolocation) {
     }).then(function(permissionStatus) {
 
       function permissionCheck() {
-      	if (permissionStatus.state === 'denied' || 'prompt') {
+      	if (permissionStatus.state === 'denied') {
+        	domOutput.textContent = "Geolocation required. Allow location when prompted by your browser.";
+      	}
+      	if (permissionStatus.state === 'prompt') {
         	domOutput.textContent = "App requires geolocation. Allow location when prompted by your browser.";
       	}
       	else if (permissionStatus.state === 'granted') {
       		domOutput.textContent = "";
-      		domButton.setAttribute('disabled', true);
-      		fetchGeo();
       	}
       }
       permissionCheck();
-      
-      permissionStatus.onchange = permissionCheck;
+
+      permissionStatus.addEventListener('change', permissionCheck, false);
 
     });
   }
@@ -43,7 +44,9 @@ if (navigator.geolocation) {
   }
 
   function makeColor(position) {
-
+	
+	domOutput.textContent = "";
+	
     // Make Hue
     if (position.coords.longitude > 0) {
       longHue = Math.round(position.coords.longitude);
