@@ -38,9 +38,13 @@ if (navigator.geolocation) {
   }
 
   function errorFeedback(error) {
-    domOutput.textContent = "Geolocation failed! Check settings and signal. Reload page and try again.";
-    alert('Error - ' + error.message);
-    domOutput.focus();
+    if(error.message.indexOf("Only secure origins are allowed") == 0) {
+      domOutput.textContent = "Browser prevents geolocation use via non-secure (HTTP) page.";
+    }
+    else {
+      alert('Error - ' + error.message);
+   	  domOutput.textContent = "Geolocation failed! Check settings and signal. Reload page and try again.";
+    }
   }
 
   function makeColor(position) {
