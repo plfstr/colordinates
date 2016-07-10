@@ -2,18 +2,7 @@
   "name": "Colordinates - Where the hue are you? Get a color value based on your location on the Earth.",
   "short_name" : "Colordinates",
   "icons": [
-    {
-      "src": "webclip-64x64.png",
-      "sizes": "64",
-      "type": "image/png"
-    },
-    {
-      "src": "webclip-128x128.png",
-      "sizes": "64",
-      "type": "image/png",
-      "density": 2.0
-    },
-    {
+       {
       "src": "webclip-128x128.png",
       "sizes": "128",
       "type": "image/png"
@@ -26,8 +15,7 @@
     {
       "src": "webclip-196x196.png",
       "sizes": "196",
-      "type": "image/png",
-      "density": 3.0
+      "type": "image/png"
     }
   ],
   "start_url": "index.html",
