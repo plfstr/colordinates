@@ -70,7 +70,7 @@ if (navigator.geolocation) {
 
     domColorvalue.className = 'color txt-small notranslate';
     domColorvalue.textContent = domOutputcolour;
-    domOutput.style.backgroundColor = domOutputcolour;
+    domOutput.setAttribute('style', 'background-color: ' + domOutputcolour);
     domOutput.appendChild(domColorvalue);
     
     if (typeof Windows !== 'undefined'&&
