@@ -38,7 +38,7 @@ if (navigator.geolocation) {
   }
 
   function errorFeedback(error) {
-    if(!window.isSecureContext || error.message.indexOf("Only secure origins are allowed") == 0) {
+    if(window.isSecureContext === false || error.message.indexOf("Only secure origins are allowed") == 0) {
       domOutput.textContent = "Browser prevents geolocation use via non-secure (HTTP) page.";
     }
     else {
