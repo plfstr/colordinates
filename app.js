@@ -3,7 +3,8 @@ var domButton = document.getElementById("huebutton"),
   domLocale = document.getElementById("longlat"),
   lightUnit = 180 / 100,
   longHue,
-  latSat;
+  latSat,
+  domFooter = document.querySelector('.txt-small');
 
 if (navigator.geolocation) {
 
@@ -28,6 +29,15 @@ if (navigator.geolocation) {
       permissionStatus.addEventListener('change', permissionCheck, false);
 
     });
+  }
+  
+  if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('sw.js').then(function(reg) {
+		console.log('Service Worker Registered!');
+ 		domFooter.textContent += " \u2022 Available Offline";
+	}).catch(function(error) {
+		console.log('Registration failed with ' + error);
+	});
   }
 
   function fetchGeo(position) {
