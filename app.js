@@ -32,7 +32,7 @@ if (navigator.geolocation) {
   }
   
   if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('sw.js').then(function(reg) {
+	navigator.serviceWorker.register('sw.js',{scope:'./'}).then(function(reg) {
 		console.log('Service Worker Registered!');
  		domFooter.textContent += " \u2022 Available Offline";
 	}).catch(function(error) {
