@@ -4,6 +4,7 @@ var domButton = document.getElementById("huebutton"),
   lightUnit = 180 / 100,
   longHue,
   latSat,
+  domColorvalue = document.createElement('div'),
   domFooter = document.querySelector('.txt-small');
 
 if (navigator.geolocation) {
@@ -45,6 +46,11 @@ if (navigator.geolocation) {
       timeout: 30000,
       maximumAge: 600000
     });
+    // ‘Finding’ placeholder...
+    domOutput.textContent = "";
+    domColorvalue.classList.add("color", "txt-small","notranslate");
+    domColorvalue.textContent = "Finding…";
+    domOutput.appendChild(domColorvalue);
   }
 
   function errorFeedback(error) {
@@ -75,8 +81,7 @@ if (navigator.geolocation) {
       latSat = Math.round((180 - (Math.round(position.coords.latitude) - -90)) / lightUnit); // Southern Latitude – Needs to range from 90 – 180
     }
 
-    var domColorvalue = document.createElement('div'),
-        domOutputcolour = "hsla(" + longHue + ", " + latSat + "%, 50%, 1)";
+    var domOutputcolour = "hsla(" + longHue + ", " + latSat + "%, 50%, 1)";
 
     domColorvalue.className = 'color txt-small notranslate';
     domColorvalue.textContent = domOutputcolour;
