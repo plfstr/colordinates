@@ -15,6 +15,9 @@ html, body {
 }
 
 body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
     margin: 0;
     padding: .75em;
     font: normal 100% / 1.5 Palatino, Georgia, serif;
@@ -25,7 +28,18 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%
+    text-size-adjust: 100%;
+}
+
+@media only screen and (min-height: 32.5rem) {
+    body {
+        justify-content: center;
+    }
+}
+
+main {
+    display: block;
+    max-width: 25rem;
 }
 
 h1, h2, p, .swatch {
@@ -39,6 +53,8 @@ h1, h2, button, .color {
 
 h1 {
     display: inline-block;
+    word-wrap: break-word;
+    word-break: break-all;
     font-size: 3em;
     border-bottom: .4375rem double #FFF;
 }
@@ -98,15 +114,4 @@ button {
 .error {
     background: #DD9441 !important;
     padding: 0.5em;
-}
-
-@media only screen and (min-width:33.75em) {
-    main {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 25em;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-    }
 }
