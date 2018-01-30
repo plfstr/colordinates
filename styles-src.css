@@ -1,13 +1,17 @@
-* {
-    box-sizing: border-box
+html {
+  box-sizing: border-box;
 }
 
-@-ms-viewport, @viewport {
-    width: device-width
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@-ms-viewport {
+    width: device-width;
 }
 
 html, body {
-    height: 100%
+    height: 100%;
 }
 
 body {
@@ -25,7 +29,7 @@ body {
 }
 
 h1, h2, p, .swatch {
-    margin: 0 auto 1.5rem
+    margin: 0 auto 1.5rem;
 }
 
 h1, h2, button, .color {
@@ -36,15 +40,15 @@ h1, h2, button, .color {
 h1 {
     display: inline-block;
     font-size: 3em;
-    border-bottom: .4375rem double #FFF
+    border-bottom: .4375rem double #FFF;
 }
 
 h2 {
-    line-height: 1
+    line-height: 1;
 }
 
 a {
-    color: #fff
+    color: #fff;
 }
 
 button {
@@ -61,7 +65,7 @@ button {
 
 .txt-small {
     font-size: .875em;
-    line-height: 1.714
+    line-height: 1.714;
 }
 
 .block {
@@ -69,7 +73,7 @@ button {
     border: .125rem solid #fff;
     border-radius: .4375rem;
     -webkit-background-clip: border-box;
-    background-clip: border-box
+    background-clip: border-box;
 }
 
 .swatch {
@@ -78,7 +82,7 @@ button {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 1em;
     -webkit-transition: background-color .2s linear;
-    transition: background-color .2s linear
+    transition: background-color .2s linear;
 }
 
 .color {
@@ -88,12 +92,12 @@ button {
     padding: .25em .5em;
     color: #fff;
     background: rgba(0, 0, 0, 0.1);
-    border-radius: .25em
+    border-radius: .25em;
 }
 
 .error {
     background: #DD9441 !important;
-    padding: 0.5em
+    padding: 0.5em;
 }
 
 @media only screen and (min-width:33.75em) {
@@ -103,6 +107,6 @@ button {
         left: 50%;
         width: 25em;
         -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%)
+        transform: translate(-50%, -50%);
     }
 }
