@@ -115,3 +115,31 @@ button {
     background: #DD9441 !important;
     padding: 0.5em;
 }
+
+/*
+* Windows 10 PWA Styling
+*/
+.is-win10 body {
+    font-family: system, "Segoe UI", sans-serif !important;
+}
+
+.is-win10 .block,
+.is-win10 .color {
+    border: 0;
+    border-radius: 0;
+}
+
+.is-win10 .border {
+    padding: .3125rem;
+    border: solid .125rem currentColor;
+}
+
+.is-win10 .swatch {
+    margin-bottom: .3125rem;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.is-win10 button {
+    font-weight: 600;
+    padding: .25rem;
+}

@@ -93,6 +93,8 @@ if (navigator.geolocation) {
         typeof Windows.UI.Notifications !== 'undefined') {
 	    // Windows Hosted Web App! Your code goes inside this condition
 	    
+	    document.body.classList.add('is-win10');
+	    
 	    // Build tile content
 		var tileContent = new Windows.Data.Xml.Dom.XmlDocument();
 		
