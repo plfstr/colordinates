@@ -84,7 +84,6 @@ button {
 }
 
 .block {
-    outline: none;
     border: .125rem solid #fff;
     border-radius: .4375rem;
     -webkit-background-clip: border-box;
