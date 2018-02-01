@@ -5,7 +5,12 @@ var domButton = document.getElementById("huebutton"),
   longHue,
   latSat,
   domColorvalue = document.createElement('div'),
-  domFooter = document.querySelector('.txt-small');
+  domFooter = document.querySelector('.txt-small'),
+  hasWindowsapi = typeof Windows !== 'undefined' && typeof Windows.UI !== 'undefined' && typeof Windows.UI.Notifications !== 'undefined';
+  
+if (hasWindowsapi === true) {
+    document.body.classList.add('is-win10');
+}
 
 if (navigator.geolocation) {
 
@@ -40,7 +45,7 @@ if (navigator.geolocation) {
 		console.log('Registration failed with ' + error);
 	});
   }
-
+  
   function fetchGeo(position) {
     navigator.geolocation.getCurrentPosition(makeColor, errorFeedback, {
       timeout: 30000,
@@ -88,12 +93,8 @@ if (navigator.geolocation) {
     domOutput.style.backgroundColor = domOutputcolour;
     domOutput.appendChild(domColorvalue);
     
-    if (typeof Windows !== 'undefined'&&
-        typeof Windows.UI !== 'undefined' &&
-        typeof Windows.UI.Notifications !== 'undefined') {
+    if (hasWindowsapi === true) {
 	    // Windows Hosted Web App! Your code goes inside this condition
-	    
-	    document.body.classList.add('is-win10');
 	    
 	    // Build tile content
 		var tileContent = new Windows.Data.Xml.Dom.XmlDocument();
