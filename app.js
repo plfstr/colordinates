@@ -129,7 +129,12 @@ if (navigator.geolocation) {
     domOutput.focus();
   }
 
-  domButton.addEventListener('click', fetchGeo, false);
+  if (window.PointerEvent) {
+    domButton.addEventListener('pointerdown', fetchGeo, false);
+  } else {
+    domButton.addEventListener('click', fetchGeo, false);
+  }
+  
 } else {
   domOutput.textContent = "This app uses features not supported by your browser";
   domOutput.focus();
