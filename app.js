@@ -16,13 +16,13 @@ if (navigator.geolocation) {
 
       function permissionCheck() {
       	if (permissionStatus.state === 'denied') {
-        	domOutput.textContent = "Geolocation required. Allow location when prompted by your browser.";
+        	userFeedback('Geolocation required. Allow location when prompted by your browser');
       	}
       	if (permissionStatus.state === 'prompt') {
-        	domOutput.textContent = "App requires geolocation. Allow location when prompted by your browser.";
+        	userFeedback('App requires geolocation. Allow location when prompted by your browser');
       	}
       	else if (permissionStatus.state === 'granted') {
-      		domOutput.textContent = "";
+      		userFeedback();
       	}
       }
       permissionCheck();
@@ -40,6 +40,10 @@ if (navigator.geolocation) {
 		console.log('Registration failed with ' + error);
 	});
   }
+  
+  function userFeedback(m) {
+        domOutput.textContent = m ? m : "";
+  }
 
   function fetchGeo(position) {
     navigator.geolocation.getCurrentPosition(makeColor, errorFeedback, {
@@ -47,25 +51,25 @@ if (navigator.geolocation) {
       maximumAge: 600000
     });
     // ‘Finding’ placeholder...
-    domOutput.textContent = "";
+    userFeedback();
     domColorvalue.classList.add("color", "txt-small","notranslate");
     domColorvalue.textContent = "Finding…";
     domOutput.appendChild(domColorvalue);
   }
 
   function errorFeedback(error) {
-    if(window.isSecureContext === false || error.message.indexOf("Only secure origins are allowed") == 0) {
-      domOutput.textContent = "Browser prevents geolocation use via non-secure (HTTP) page.";
+    if (window.isSecureContext === false || error.message.indexOf("Only secure origins are allowed") == 0) {
+      userFeedback('Browser prevents geolocation use via non-secure (HTTP) page');
     }
     else {
       alert('Error - ' + error.message);
-   	  domOutput.textContent = "Geolocation failed! Check settings and signal. Reload page and try again.";
+   	  userFeedback('Geolocation failed! Check settings and signal. Reload page and try again');
     }
   }
 
   function makeColor(position) {
 	
-	domOutput.textContent = "";
+	userFeedback();
 	
     // Make Hue
     if (position.coords.longitude > 0) {
@@ -131,6 +135,6 @@ if (navigator.geolocation) {
 
   domButton.addEventListener('click', fetchGeo, false);
 } else {
-  domOutput.textContent = "This app uses features not supported by your browser";
+  userFeedback('This app uses features not supported by your browser');
   domOutput.focus();
 }
