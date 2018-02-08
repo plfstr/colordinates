@@ -92,6 +92,20 @@ if (navigator.geolocation) {
     domOutput.style.backgroundColor = domOutputcolour;
     domOutput.appendChild(domColorvalue);
     
+    if (navigator.share !== undefined) {
+        domButton.innerText = "Share My Hue";
+        domButton.removeEventListener('click', fetchGeo, false);
+        domButton.addEventListener('click', function() {
+           navigator.share({
+              title: 'Colordinates',
+              text: domOutputcolour,
+              url: '',
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        })
+    }
+    
     if (typeof Windows !== 'undefined'&&
         typeof Windows.UI !== 'undefined' &&
         typeof Windows.UI.Notifications !== 'undefined') {
@@ -128,8 +142,8 @@ if (navigator.geolocation) {
 		var tileNotification = new notifications.TileNotification(tileContent);
 		
 		notifications.TileUpdateManager.createTileUpdaterForApplication().update(tileNotification);
-   	}
-    
+   }
+       
     domOutput.focus();
   }
 
