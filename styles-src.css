@@ -78,6 +78,14 @@ button {
     background: #fff
 }
 
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
 .txt-small {
     font-size: .875em;
     line-height: 1.714;
@@ -108,6 +116,13 @@ button {
     color: #fff;
     background: rgba(0, 0, 0, 0.1);
     border-radius: .25em;
+}
+
+.list--inline {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+    list-style-type: circle;
 }
 
 .error {
