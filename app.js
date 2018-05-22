@@ -5,7 +5,8 @@ var domButton = document.getElementById("huebutton"),
   longHue,
   latSat,
   domColorvalue = document.createElement('div'),
-  domFooter = document.querySelector('.txt-small');
+  domFooter = document.querySelector('.txt-small'),
+  isWindows = typeof Windows !== 'undefined' && typeof Windows.UI !== 'undefined' && typeof Windows.UI.Notifications !== 'undefined';
 
 if (navigator.geolocation) {
 
@@ -92,43 +93,12 @@ if (navigator.geolocation) {
     domOutput.style.backgroundColor = domOutputcolour;
     domOutput.appendChild(domColorvalue);
     
-    if (typeof Windows !== 'undefined'&&
-        typeof Windows.UI !== 'undefined' &&
-        typeof Windows.UI.Notifications !== 'undefined') {
-	    // Windows Hosted Web App! Your code goes inside this condition
-	    
-	    // Build tile content
-		var tileContent = new Windows.Data.Xml.Dom.XmlDocument();
-		
-		var tile = tileContent.createElement("tile");
-		tileContent.appendChild(tile);
-		
-			var visual = tileContent.createElement("visual");
-			visual.setAttribute("branding","nameAndLogo")
-			tile.appendChild(visual);
-			
-				var bindingMedium = tileContent.createElement("binding");
-				bindingMedium.setAttribute("template", "TileMedium");
-				visual.appendChild(bindingMedium);
-				
-					var tileColorval = tileContent.createElement("text");
-					tileColorval.setAttribute("hint-style", "base");
-					tileColorval.setAttribute("hint-wrap", "true");
-					tileColorval.innerText = domOutputcolour;
-					bindingMedium.appendChild(tileColorval);
-					
-					var tileGeoval = tileContent.createElement("text");
-					tileGeoval.setAttribute("hint-style", "captionSubtle");
-					tileGeoval.setAttribute("hint-wrap", "true");
-					tileGeoval.innerText = position.coords.latitude + ',' + position.coords.longitude;
-					bindingMedium.appendChild(tileGeoval);
-	    
-		// Update tile
-		var notifications = Windows.UI.Notifications;
-		var tileNotification = new notifications.TileNotification(tileContent);
-		
-		notifications.TileUpdateManager.createTileUpdaterForApplication().update(tileNotification);
-   	}
+    if (isWindows) {
+      import(./app-winapi.js).then( 
+          colordinatesTile(position.coords.longitude, position.coords.latitude, domOutputcolour);
+        )
+      }
+    }
     
     domOutput.focus();
   }
