@@ -94,10 +94,9 @@ if (navigator.geolocation) {
     domOutput.appendChild(domColorvalue);
     
     if (isWindows) {
-      import(./app-winapi.js).then( 
+      import(./app-winapi.js).then(
           colordinatesTile(position.coords.longitude, position.coords.latitude, domOutputcolour);
-        )
-      }
+      )
     }
     
     domOutput.focus();
