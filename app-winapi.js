@@ -1,4 +1,4 @@
-function export colordinatesTile(hueLat, hueLong, hueResult) {
+export default function colordinatesTile(hueLat, hueLong, hueResult) {
     
     var tileContent = new Windows.Data.Xml.Dom.XmlDocument();
     
