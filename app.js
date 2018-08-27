@@ -2,8 +2,6 @@ var domButton = document.getElementById("huebutton"),
   domOutput = document.getElementById("output"),
   domLocale = document.getElementById("longlat"),
   lightUnit = 180 / 100,
-  longHue,
-  latSat,
   domColorvalue = document.createElement('div'),
   domFooter = document.querySelector('.txt-small');
 
@@ -62,25 +60,27 @@ if (navigator.geolocation) {
     }
   }
 
+  function makeHue(position) {    
+    if (position.coords.longitude > 0) {
+      return Math.round(position.coords.longitude);
+    } else {
+      return Math.round(position.coords.longitude - -180 * 2);
+    }   
+  }
+
+  function makeSat(position) {   
+    if (position.coords.latitude > 0) {
+      return Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
+    } else {
+      return Math.round((180 - (Math.round(position.coords.latitude) - -90)) / lightUnit); // Southern Latitude – Needs to range from 90 – 180
+    }
+  }
+
   function makeColor(position) {
 	
-	userFeedback();
+	  userFeedback();
 	
-    // Make Hue
-    if (position.coords.longitude > 0) {
-      longHue = Math.round(position.coords.longitude);
-    } else {
-      longHue = Math.round(position.coords.longitude - -180 * 2);
-    }
-
-    // Make lightness
-    if (position.coords.latitude > 0) {
-      latSat = Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
-    } else {
-      latSat = Math.round((180 - (Math.round(position.coords.latitude) - -90)) / lightUnit); // Southern Latitude – Needs to range from 90 – 180
-    }
-
-    var domOutputcolour = "hsla(" + longHue + ", " + latSat + "%, 50%, 1)";
+    var domOutputcolour = "hsla(" + makeHue(position) + ", " + makeSat(position) + "%, 50%, 1)";
 
     domColorvalue.className = 'color txt-small notranslate';
     domColorvalue.textContent = domOutputcolour;
