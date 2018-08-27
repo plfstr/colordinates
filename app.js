@@ -9,29 +9,6 @@ var domButton = document.getElementById("huebutton"),
 
 if (navigator.geolocation) {
 
-  if (navigator.permissions) {
-    navigator.permissions.query({
-      name: 'geolocation'
-    }).then(function(permissionStatus) {
-
-      function permissionCheck() {
-      	if (permissionStatus.state === 'denied') {
-        	userFeedback('Geolocation required. Allow location when prompted by your browser');
-      	}
-      	if (permissionStatus.state === 'prompt') {
-        	userFeedback('App requires geolocation. Allow location when prompted by your browser');
-      	}
-      	else if (permissionStatus.state === 'granted') {
-      		userFeedback();
-      	}
-      }
-      permissionCheck();
-
-      permissionStatus.addEventListener('change', permissionCheck, false);
-
-    });
-  }
-  
   if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js',{scope:'./'}).then(function(reg) {
 		console.log('Service Worker Registered!');
@@ -39,6 +16,24 @@ if (navigator.geolocation) {
 	}).catch(function(error) {
 		console.log('Registration failed with ' + error);
 	});
+  }
+
+  if (navigator.permissions) {
+    navigator.permissions.query({
+      name: 'geolocation'
+    }).then(permissionCheck);
+  }
+
+  function permissionCheck() {
+    if (permissionStatus.state === 'denied') {
+      userFeedback('Geolocation required. Allow location when prompted by your browser');
+    }
+    if (permissionStatus.state === 'prompt') {
+      userFeedback('App requires geolocation. Allow location when prompted by your browser');
+    }
+    else if (permissionStatus.state === 'granted') {
+      userFeedback();
+    }
   }
   
   function userFeedback(m) {
@@ -134,6 +129,7 @@ if (navigator.geolocation) {
   }
 
   domButton.addEventListener('click', fetchGeo, false);
+
 } else {
   userFeedback('This app uses features not supported by your browser');
   domOutput.focus();
