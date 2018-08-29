@@ -45,7 +45,7 @@ if (navigator.geolocation) {
     });
     // ‘Finding’ placeholder...
     userFeedback();
-    domColorvalue.classList.add("color", "txt-small","notranslate");
+    domColorvalue.className = 'color txt-small notranslate';
     domColorvalue.textContent = "Finding…";
     domOutput.appendChild(domColorvalue);
   }
@@ -82,7 +82,7 @@ if (navigator.geolocation) {
 	
     var domOutputcolour = "hsla(" + makeHue(position) + ", " + makeSat(position) + "%, 50%, 1)";
 
-    domColorvalue.className = 'color txt-small notranslate';
+    // Display Colour Value
     domColorvalue.textContent = domOutputcolour;
     domOutput.style.backgroundColor = domOutputcolour;
     domOutput.appendChild(domColorvalue);
