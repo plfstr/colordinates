@@ -1,6 +1,6 @@
-var domButton = document.getElementById("huebutton"),
-  domOutput = document.getElementById("output"),
-  domLocale = document.getElementById("longlat"),
+var domButton = document.getElementById('huebutton'),
+  domOutput = document.getElementById('output'),
+  domLocale = document.getElementById('longlat'),
   lightUnit = 180 / 100,
   domColorvalue = document.createElement('div'),
   domFooter = document.querySelector('.txt-small');
@@ -10,7 +10,7 @@ if (navigator.geolocation) {
   if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js',{scope:'./'}).then(function(reg) {
 		console.log('Service Worker Registered!');
- 		domFooter.textContent += " \u2022 Available Offline";
+ 		domFooter.textContent += ' \u2022 Available Offline';
 	}).catch(function(error) {
 		console.log('Registration failed with ' + error);
 	});
@@ -46,12 +46,12 @@ if (navigator.geolocation) {
     // ‘Finding’ placeholder...
     userFeedback();
     domColorvalue.className = 'color txt-small notranslate';
-    domColorvalue.textContent = "Finding…";
+    domColorvalue.textContent = 'Finding…';
     domOutput.appendChild(domColorvalue);
   }
 
   function errorFeedback(error) {
-    if (window.isSecureContext === false || error.message.indexOf("Only secure origins are allowed") == 0) {
+    if (window.isSecureContext === false || error.message.indexOf('Only secure origins are allowed') == 0) {
       userFeedback('Browser prevents geolocation use via non-secure (HTTP) page');
     }
     else {
@@ -80,7 +80,7 @@ if (navigator.geolocation) {
 	
 	  userFeedback();
 	
-    var domOutputcolour = "hsla(" + makeHue(position) + ", " + makeSat(position) + "%, 50%, 1)";
+    var domOutputcolour = 'hsla(' + makeHue(position) + ', ' + makeSat(position) + '%, 50%, 1)';
 
     // Display Colour Value
     domColorvalue.textContent = domOutputcolour;
