@@ -37,6 +37,13 @@ body {
     }
 }
 
+@media only screen and (prefers-color-scheme: dark) {
+    body {
+      background: #426a74;
+      background-image: linear-gradient(to bottom right, #122938, #83b3a6);
+    }
+}
+
 main {
     display: block;
     max-width: 25rem;
