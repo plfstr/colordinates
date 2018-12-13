@@ -119,7 +119,7 @@ button {
 /*
 * Windows 10 PWA Styling
 */
-.is-win10 body {
+.is-win10 {
     font-family: system, "Segoe UI", sans-serif !important;
 }
 
