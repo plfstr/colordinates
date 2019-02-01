@@ -26,7 +26,6 @@ body {
     background: #51818C;
     background-image: linear-gradient(135deg, #214A65, #A3E0CF);
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
