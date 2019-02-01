@@ -99,7 +99,7 @@ if (navigator.geolocation) {
            navigator.share({
               title: 'Colordinates',
               text: domOutputcolour,
-              url: '',
+              url: document.location.href
             })
             .then(() => console.log('Successful share'))
             .catch((error) => console.log('Error sharing', error));
