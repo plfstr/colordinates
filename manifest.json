@@ -1,7 +1,7 @@
 {
   "name": "Colordinates - Where the hue are you?",
   "short_name" : "Colordinates",
-  "description" : "Colordinates uses your devices geographic position to display a color swatch and the HSLA colour value",
+  "description" : "Colordinates uses your devices geographic position to display a color swatch and the HSLA color value",
   "scope": "/colordinates/",
   "icons": [
        {
