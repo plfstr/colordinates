@@ -2,7 +2,7 @@
 <html lang="en" manifest="manifest.appcache">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; child-src 'self'; manifest-src 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; child-src 'self'; manifest-src 'self'; worker-src 'self';">
 <title>Colordinates | Where the hue are you?</title>
 <meta name="description" content="Where the hue are you? Get a color value based on your location on the Earth.">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
@@ -36,9 +36,7 @@
 <body>
 <main role="main">
 	
-	<noscript>
-		<p class="block error">Enable JavaScript for app to function.</p>
-	</noscript>
+	
 		
 	<header role="banner">
 		<h1 translate="no">Colordinates</h1>
@@ -48,7 +46,9 @@
 		<h2>Where the hue are you?</h2>
 		<p>Get a color value based on your location on Earth.</p>
 		
-			<div class="block swatch" id="output" role="status" tabindex="0" aria-label="Location Result" aria-live="polite"></div>
+			<div class="block swatch" id="output" role="status" tabindex="0" aria-label="Location Result" aria-live="polite">
+				<noscript>Enable JavaScript For App to Function</noscript>
+			</div>
 			
 			<button class="block" id="huebutton" aria-controls="output">Find My Hue</button>
 				

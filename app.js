@@ -85,7 +85,7 @@ if (navigator.geolocation) {
 	
 	  userFeedback();
 	
-    var domOutputcolour = 'hsla(' + makeHue(position) + ', ' + makeSat(position) + '%, 50%, 1)';
+    var domOutputcolour = 'HSLA(' + makeHue(position) + ', ' + makeSat(position) + '%, 50%, 1)';
 
     // Display Colour Value
     domColorvalue.textContent = domOutputcolour;
