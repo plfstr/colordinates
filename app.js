@@ -1,9 +1,7 @@
-var domButton = document.getElementById("huebutton"),
-  domOutput = document.getElementById("output"),
-  domLocale = document.getElementById("longlat"),
+var domButton = document.getElementById('huebutton'),
+  domOutput = document.getElementById('output'),
+  domLocale = document.getElementById('longlat'),
   lightUnit = 180 / 100,
-  longHue,
-  latSat,
   domColorvalue = document.createElement('div'),
   domFooter = document.querySelector('.txt-small');
 
@@ -35,7 +33,7 @@ if (navigator.geolocation) {
   if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js',{scope:'./'}).then(function(reg) {
 		console.log('Service Worker Registered!');
- 		domFooter.textContent += " \u2022 Available Offline";
+ 		domFooter.textContent += ' \u2022 Available Offline';
 	}).catch(function(error) {
 		console.log('Registration failed with ' + error);
 	});
@@ -52,13 +50,13 @@ if (navigator.geolocation) {
     });
     // ‘Finding’ placeholder...
     userFeedback();
-    domColorvalue.classList.add("color", "txt-small","notranslate");
-    domColorvalue.textContent = "Finding…";
+    domColorvalue.className = 'color txt-small notranslate';
+    domColorvalue.textContent = 'Finding…';
     domOutput.appendChild(domColorvalue);
   }
 
   function errorFeedback(error) {
-    if (window.isSecureContext === false || error.message.indexOf("Only secure origins are allowed") == 0) {
+    if (window.isSecureContext === false || error.message.indexOf('Only secure origins are allowed') == 0) {
       userFeedback('Browser prevents geolocation use via non-secure (HTTP) page');
     }
     else {
@@ -67,27 +65,29 @@ if (navigator.geolocation) {
     }
   }
 
+  function makeHue(position) {    
+    if (position.coords.longitude > 0) {
+      return Math.round(position.coords.longitude);
+    } else {
+      return Math.round(position.coords.longitude - -180 * 2);
+    }   
+  }
+
+  function makeSat(position) {   
+    if (position.coords.latitude > 0) {
+      return Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
+    } else {
+      return Math.round((180 - (Math.round(position.coords.latitude) - -90)) / lightUnit); // Southern Latitude – Needs to range from 90 – 180
+    }
+  }
+
   function makeColor(position) {
 	
-	userFeedback();
+	  userFeedback();
 	
-    // Make Hue
-    if (position.coords.longitude > 0) {
-      longHue = Math.round(position.coords.longitude);
-    } else {
-      longHue = Math.round(position.coords.longitude - -180 * 2);
-    }
+    var domOutputcolour = 'HSLA(' + makeHue(position) + ', ' + makeSat(position) + '%, 50%, 1)';
 
-    // Make lightness
-    if (position.coords.latitude > 0) {
-      latSat = Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
-    } else {
-      latSat = Math.round((180 - (Math.round(position.coords.latitude) - -90)) / lightUnit); // Southern Latitude – Needs to range from 90 – 180
-    }
-
-    var domOutputcolour = "HSLA(" + longHue + ", " + latSat + "%, 50%, 1)";
-
-    domColorvalue.className = 'color txt-small notranslate';
+    // Display Colour Value
     domColorvalue.textContent = domOutputcolour;
     domOutput.style.backgroundColor = domOutputcolour;
     domOutput.appendChild(domColorvalue);
