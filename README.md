@@ -2,8 +2,8 @@
 
 *Where the hue are you? Get a color value based on your location on the Earth.*
 
-Colordinates uses your devices geographic position to display a color swatch with the HSLA colour value.
+Colordinates uses your devices geographic position to display a color swatch with the HSLA color value.
 
-Find your hue. [Launch Colordinates](https://plfstr.github.io/colordinates/)
+[Launch Colordinates](https://plfstr.github.io/colordinates/) and find your hue!
 
-Colordinates, created by [Paul Foster](http://www.paulfosterdesign.co.uk).
+_Colordinates created by [Paul Foster](https://www.paulfosterdesign.co.uk/blog/colordinates/)_
