@@ -60,7 +60,6 @@ if (navigator.geolocation) {
       userFeedback('Browser prevents geolocation use via non-secure (HTTP) page');
     }
     else {
-      alert('Error - ' + error.message);
    	  userFeedback('Geolocation failed! Check settings and signal. Reload page and try again');
     }
   }
