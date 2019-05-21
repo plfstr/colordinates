@@ -28,6 +28,5 @@
   "start_url": "/colordinates/",
   "display": "standalone",
   "theme_color": "#A3E0CF",
-  "background_color": "#609298",
-  "mjs_api_access": [{ "match": "https://plfstr.github.io/colordinates/", "access": "all", "platform": "windows10" }]
+  "background_color": "#609298"
 }
