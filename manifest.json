@@ -20,6 +20,12 @@
       "type": "image/png"
     },     
     {
+      "src": "webclip-324x324.png",
+      "sizes": "324x324",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },     
+    {
       "src": "webclip-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
