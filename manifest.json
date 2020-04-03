@@ -18,17 +18,12 @@
       "src": "webclip-196x196.png",
       "sizes": "196x196",
       "type": "image/png"
-    },     
+    },    
     {
-      "src": "webclip-324x324.png",
-      "sizes": "324x324",
+      "src": "webclip-512x512-maskable.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
-    },     
-    {
-      "src": "webclip-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
     }
   ],
   "start_url": "/colordinates/",
