@@ -7,29 +7,6 @@ var domButton = document.getElementById('huebutton'),
 
 if (navigator.geolocation) {
 
-  if (navigator.permissions) {
-    navigator.permissions.query({
-      name: 'geolocation'
-    }).then(function(permissionStatus) {
-
-      function permissionCheck() {
-      	if (permissionStatus.state === 'denied') {
-        	userFeedback('Geolocation required. Allow location when prompted by your browser');
-      	}
-      	if (permissionStatus.state === 'prompt') {
-        	userFeedback('App requires geolocation. Allow location when prompted by your browser');
-      	}
-      	else if (permissionStatus.state === 'granted') {
-      		userFeedback();
-      	}
-      }
-      permissionCheck();
-
-      permissionStatus.addEventListener('change', permissionCheck, false);
-
-    });
-  }
-  
   if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js',{scope:'./'}).then(function(reg) {
 		console.log('Service Worker Registered!');
@@ -37,6 +14,26 @@ if (navigator.geolocation) {
 	}).catch(function(error) {
 		console.log('Registration failed with ' + error);
 	});
+  }
+
+  function getPermissions() {
+    if (!navigator.permissions) {
+      return;
+    }  
+    navigator.permissions
+      .query({
+        name: "geolocation"
+      })
+      .then(function(permissionStatus) {
+        var allstates = {
+          denied:
+            "App requires geolocation. Allow location when prompted by your browser",
+          prompt:
+            "App requires geolocation. Please allow geolocation in this sites permissions",
+          granted: ""
+        };
+        userFeedback( allstates[permissionStatus.state] );
+      });
   }
   
   function userFeedback(m) {
@@ -60,8 +57,11 @@ if (navigator.geolocation) {
       userFeedback('Browser prevents geolocation use via non-secure (HTTP) page');
     }
     else {
-      alert('Error - ' + error.message);
-   	  userFeedback('Geolocation failed! Check settings and signal. Reload page and try again');
+      if (navigator.permissions) {
+        getPermissions();
+      } else {
+        userFeedback("Geolocation failed! Check settings and signal. Reload page and try again");
+      }
     }
   }
 
@@ -95,6 +95,11 @@ if (navigator.geolocation) {
   }
 
   domButton.addEventListener('click', fetchGeo, false);
+  
+  if (navigator.permissions) {
+    permissionStatus.addEventListener('change', getPermissions, false);
+  }
+
 } else {
   userFeedback('This app uses features not supported by your browser');
   domOutput.focus();
