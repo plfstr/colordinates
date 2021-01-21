@@ -1,3 +1,4 @@
+// @ts-check
 var domButton = document.getElementById('huebutton'),
   domOutput = document.getElementById('output'),
   domLocale = document.getElementById('longlat'),
@@ -39,11 +40,16 @@ if (navigator.geolocation) {
 	});
   }
   
+  /**
+   * @type {function}
+   * @param {string} [m] - Feedback for the user
+   * @returns {any} The passed string OR can be empty
+  */
   function userFeedback(m) {
         domOutput.textContent = m ? m : "";
   }
 
-  function fetchGeo(position) {
+  function fetchGeo() {
     navigator.geolocation.getCurrentPosition(makeColor, errorFeedback, {
       timeout: 30000,
       maximumAge: 600000
@@ -65,6 +71,11 @@ if (navigator.geolocation) {
     }
   }
 
+  /**
+   * @types {function} makeHue
+   * @param {object} position
+   * @returns {number}
+  */
   function makeHue(position) {    
     if (position.coords.longitude > 0) {
       return Math.round(position.coords.longitude);
@@ -73,6 +84,11 @@ if (navigator.geolocation) {
     }   
   }
 
+  /**
+   * @types {function} makeSat
+   * @param {object} position
+   * @returns {number}
+  */
   function makeSat(position) {   
     if (position.coords.latitude > 0) {
       return Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
@@ -81,6 +97,10 @@ if (navigator.geolocation) {
     }
   }
 
+  /**
+   * 
+   * @param {object} position 
+   */
   function makeColor(position) {
 	
 	  userFeedback();
