@@ -99,7 +99,7 @@ button {
 }
 
 .block {
-    padding: .25em;
+    padding: .25rem;
     border: .125rem solid #fff;
     border-radius: .4375rem;
     -webkit-background-clip: border-box;
