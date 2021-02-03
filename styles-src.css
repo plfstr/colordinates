@@ -99,6 +99,7 @@ button {
 }
 
 .block {
+    padding: .25em;
     border: .125rem solid #fff;
     border-radius: .4375rem;
     -webkit-background-clip: border-box;
@@ -108,7 +109,6 @@ button {
 .swatch {
     position: relative;
     min-height: 5.25em;
-    padding: 1em;
     margin-bottom: .5rem;
     background-color: rgba(0, 0, 0, 0.2);
     -webkit-transition: background-color .2s linear;
