@@ -26,6 +26,18 @@
       "purpose": "maskable any"
     }
   ],
+  "screenshots" : [
+    {
+      "src": "colordinates-screenshot.webp",
+      "sizes": "540x720",
+      "type": "image/webp"
+    },
+    {
+      "src": "colordinates-screenshot-dark.webp",
+      "sizes": "540x720",
+      "type": "image/webp"
+    }
+  ],
   "start_url": "/colordinates/",
   "display": "standalone",
   "theme_color": "#699da0",
