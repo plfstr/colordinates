@@ -33,6 +33,7 @@ if (navigator.geolocation) {
           granted: ""
         };
         userFeedback( allstates[permissionStatus.state] );
+        permissionStatus.addEventListener('change', getPermissions, false);
       });
   }
   
@@ -95,10 +96,6 @@ if (navigator.geolocation) {
   }
 
   domButton.addEventListener('click', fetchGeo, false);
-  
-  if (navigator.permissions) {
-    permissionStatus.addEventListener('change', getPermissions, false);
-  }
 
 } else {
   userFeedback('This app uses features not supported by your browser');
