@@ -106,6 +106,14 @@ button {
     background-clip: border-box;
 }
 
+.block:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.block:focus-visible {
+    outline: auto;
+}
+
 .swatch {
     position: relative;
     min-height: 5.25em;
