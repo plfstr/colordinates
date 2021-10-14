@@ -20,13 +20,13 @@ body {
     align-items: center;
     margin: 0;
     padding: .75em;
-    font: normal 100% / 1.5 Palatino, Georgia, serif;
+    font: normal 100% / 1.5 Palatino, Georgia, ui-serif, serif;
     text-align: center;
     color: #fff;
     background: #51818C;
     background: linear-gradient(135deg, #214A65, #A3E0CF);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-attachment: fixed;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
@@ -62,16 +62,18 @@ main > * > * {
 }
 
 h1, h2, button, .color {
-    font-family: "Avenir Next", Avenir, "Myriad Pro", "Trebuchet MS", sans-serif;
-    text-rendering: optimizeLegibility
+    font-family: "Avenir Next", Avenir, "Myriad Pro", "Trebuchet MS", ui-sans-serif, sans-serif;
 }
 
 h1 {
     display: inline-block;
     word-wrap: break-word;
     word-break: break-all;
-    font-size: 3em;
     border-bottom: .4375rem double #FFF;
+}
+
+@media only screen and (min-width: 320px) {
+    h1 {font-size: 3em}
 }
 
 h2 {
