@@ -24,9 +24,7 @@ body {
     text-align: center;
     color: #fff;
     background: #51818C;
-    background: linear-gradient(135deg, #214A65, #A3E0CF);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, #214A65, #A3E0CF) no-repeat fixed;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
