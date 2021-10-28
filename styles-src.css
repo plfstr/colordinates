@@ -29,14 +29,6 @@ body {
     text-size-adjust: 100%;
 }
 
-@media only screen and (display-mode: standalone) {
-    body {
-        background-attachment: scroll;
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
-    }
-}
-
 @media only screen and (min-height: 32.5rem) {
     body {
         justify-content: center;
