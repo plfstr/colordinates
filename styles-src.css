@@ -38,7 +38,7 @@ body {
 @media only screen and (prefers-color-scheme: dark) {
     body {
       background: #426a74;
-      background: linear-gradient(to bottom right, #122938, #83b3a6) no-repeat fixed;
+      background: linear-gradient(to bottom right, #00233a, #83b3a6) no-repeat fixed;
     }
 }
 
@@ -110,7 +110,7 @@ button {
     position: relative;
     min-height: 5.25em;
     margin-bottom: .5rem;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 30, 0.2);
     -webkit-transition: background-color .2s linear;
     transition: background-color .2s linear;
 }
