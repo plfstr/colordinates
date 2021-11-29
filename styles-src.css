@@ -29,6 +29,12 @@ body {
     text-size-adjust: 100%;
 }
 
+@supports (padding: max(0px)) {
+    body {
+        padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left));
+    }
+}
+
 @media only screen and (min-height: 32.5rem) {
     body {
         justify-content: center;
