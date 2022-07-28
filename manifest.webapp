@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "name": "Colordinates",
+  "description": "Colordinates uses your devices geographic position to display a color swatch and the HSLA color value",
+  "type": "web",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "icon-56x56.png",
+    "112": "icon-112x112.png"
+  },
+  "developer": {
+    "name": "Paul Foster",
+    "url": "https://www.paulfosterdesign.co.uk"
+  },
+  "permissions": {
+      "geolocation": {
+          "description": "Required to generate your location based color"
+        },
+        "serviceworker":{
+            "description": "Required to make app available offline"
+        }
+  },
+  "cursor": "true",
+  "locales": {
+    "en": {
+      "name": "Colordinates",
+      "subtitle": "Where the hue are you?",
+      "description": "Colordinates uses your devices geographic position to display a color swatch and the HSLA color value"
+    }
+  },
+  "default_locale": "en-US",
+  "categories": [
+    "entertainment",
+    "life style"
+  ],
+  "csp": "default-src 'self'"
+}
