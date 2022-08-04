@@ -2,7 +2,7 @@ var domButton = document.getElementById('huebutton'),
   domOutput = document.getElementById('output'),
   domLocale = document.getElementById('longlat'),
   lightUnit = 180 / 100,
-  domColorvalue = document.createElement('div'),
+  domColorvalue = document.createElement('output'),
   domFooter = document.querySelector('.txt-small');
 
 if (navigator.geolocation) {
