@@ -1,30 +1,31 @@
 var domButton = document.getElementById('huebutton'),
   domOutput = document.getElementById('output'),
+  domFeedback = document.getElementById('feedback'), 
   domLocale = document.getElementById('longlat'),
   lightUnit = 180 / 100,
-  domColorvalue = document.createElement('div'),
-  domFooter = document.querySelector('.txt-small');
+  domColorvalue = document.getElementById('colval');
+domFooter = document.querySelector('.txt-small');
 
 if (navigator.geolocation) {
 
   if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('sw.js',{scope:'./'}).then(function(reg) {
-		console.log('Service Worker Registered!');
- 		domFooter.textContent += ' \u2022 Available Offline';
-	}).catch(function(error) {
-		console.log('Registration failed with ' + error);
-	});
+    navigator.serviceWorker.register('sw.js', { scope: './' }).then(function (reg) {
+      console.log('Service Worker Registered!');
+      domFooter.textContent += ' \u2022 Available Offline';
+    }).catch(function (error) {
+      console.log('Registration failed with ' + error);
+    });
   }
 
   function getPermissions() {
     if (!navigator.permissions) {
       return;
-    }  
+    }
     navigator.permissions
       .query({
         name: "geolocation"
       })
-      .then(function(permissionStatus) {
+      .then(function (permissionStatus) {
         var allstates = {
           denied:
             "App requires geolocation. Allow location when prompted by your browser",
@@ -32,13 +33,14 @@ if (navigator.geolocation) {
             "App requires geolocation. Please allow geolocation in this sites permissions",
           granted: ""
         };
-        userFeedback( allstates[permissionStatus.state] );
+        userFeedback(allstates[permissionStatus.state]);
         permissionStatus.addEventListener('change', getPermissions, false);
       });
   }
-  
+
   function userFeedback(m) {
-        domOutput.textContent = m ? m : "";
+    domFeedback.textContent = m ? m : "";
+    domColorvalue.textContent = "";
   }
 
   function fetchGeo(position) {
@@ -50,7 +52,6 @@ if (navigator.geolocation) {
     userFeedback();
     domColorvalue.className = 'color txt-small notranslate';
     domColorvalue.textContent = 'Finding…';
-    domOutput.appendChild(domColorvalue);
   }
 
   function errorFeedback(error) {
@@ -66,15 +67,15 @@ if (navigator.geolocation) {
     }
   }
 
-  function makeHue(position) {    
+  function makeHue(position) {
     if (position.coords.longitude > 0) {
       return Math.round(position.coords.longitude);
     } else {
       return Math.round(position.coords.longitude - -180 * 2);
-    }   
+    }
   }
 
-  function makeSat(position) {   
+  function makeSat(position) {
     if (position.coords.latitude > 0) {
       return Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
     } else {
@@ -83,21 +84,18 @@ if (navigator.geolocation) {
   }
 
   function makeColor(position) {
-	
-	  userFeedback();
-	
+
+    userFeedback();
+
     var domOutputcolour = 'HSLA(' + makeHue(position) + ', ' + makeSat(position) + '%, 50%, 1)';
 
     // Display Colour Value
-    domColorvalue.textContent = domOutputcolour;
+    domColorvalue.textContent = domOutputcolour;  
     domOutput.style.backgroundColor = domOutputcolour;
-    domOutput.appendChild(domColorvalue);   
-    domOutput.focus();
   }
 
   domButton.addEventListener('click', fetchGeo, false);
 
 } else {
   userFeedback('This app uses features not supported by your browser');
-  domOutput.focus();
 }

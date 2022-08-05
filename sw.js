@@ -1,7 +1,7 @@
 var CACHE_NAME = 'dependencies-cache',
 	REQUIRED_FILES = [
 	  'index.html',
-	  'app.min.js?20210330',
+	  'app.min.js?20220805',
 	  'styles.css?20211129'
 	];
 
