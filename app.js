@@ -68,19 +68,15 @@ if (navigator.geolocation) {
   }
 
   function makeHue(position) {
-    if (position.coords.longitude > 0) {
-      return Math.round(position.coords.longitude);
-    } else {
-      return Math.round(position.coords.longitude - -180 * 2);
-    }
+      var long = Math.round(position.coords.longitude);
+      var posneg = Math.sign(long) ? 0 : -180 * 2;
+      return long - posneg;
   }
-
+  
   function makeSat(position) {
-    if (position.coords.latitude > 0) {
-      return Math.round((180 - Math.round(position.coords.latitude) - 90) / lightUnit); //  Northern Latitude – Needs to range from 0 – 90
-    } else {
-      return Math.round((180 - (Math.round(position.coords.latitude) - -90)) / lightUnit); // Southern Latitude – Needs to range from 90 – 180
-    }
+      var lat = Math.round(position.coords.latitude);
+      var posneg = Math.sign(lat) ? 90 : -90;
+      return Math.round((180 - lat - posneg) / lightUnit);
   }
 
   function makeColor(position) {
