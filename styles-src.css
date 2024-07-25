@@ -119,6 +119,7 @@ button {
     background-color: rgba(0, 0, 30, 0.2);
     -webkit-transition: background-color .2s linear;
     transition: background-color .2s linear;
+    forced-color-adjust: none;
 }
 
 .color {
