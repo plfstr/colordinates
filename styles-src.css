@@ -15,11 +15,10 @@ html, body {
 }
 
 body {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
     margin: 0;
     padding: .75em;
+    align-content: center;
+    align-content: safe center;
     font: normal 100% / 1.5 Palatino, Georgia, ui-serif, serif;
     text-align: center;
     color: #fff;
@@ -32,12 +31,6 @@ body {
 @supports (padding: max(0px)) {
     body {
         padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left));
-    }
-}
-
-@media only screen and (min-height: 32.5rem) {
-    body {
-        justify-content: center;
     }
 }
 
