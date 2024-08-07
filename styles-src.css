@@ -132,6 +132,13 @@ button {
     border-radius: .25em;
 }
 
+@media (forced-colors: active) {
+  .color {
+    color: CanvasText;
+    background-color: Canvas;
+  }
+}
+
 .error {
     background: #DD9441 !important;
     padding: 0.5em;
