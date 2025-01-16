@@ -84,14 +84,14 @@ if (navigator.geolocation) {
   }
 
   function makeColor(position) {
-
     userFeedback();
-
     var domOutputcolour = 'HSLA(' + makeHue(position) + ', ' + makeSat(position) + '%, 50%, 1)';
-
-    // Display Colour Value
-    domColorvalue.textContent = domOutputcolour;  
-    domOutput.style.backgroundColor = domOutputcolour;
+    domColorvalue.textContent = domOutputcolour;    
+    if (CSS.supports("background-color", "attr(data-geocolor type(color)")) {
+      domOutput.dataset.geocolor = domOutputcolour;
+    } else {
+      domOutput.style.backgroundColor = domOutputcolour;
+    }
   }
 
   domButton.addEventListener('click', fetchGeo, false);
