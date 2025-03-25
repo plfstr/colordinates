@@ -68,11 +68,8 @@ if (navigator.geolocation) {
   }
 
   function makeHue(position) {
-    if (position.coords.longitude > 0) {
-      return Math.round(position.coords.longitude);
-    } else {
-      return Math.round(position.coords.longitude - -180 * 2);
-    }
+    var long = position.coords.longitude;
+    return Math.round(long >= 0 ? long : long + 360);
   }
 
   function makeSat(position) {
