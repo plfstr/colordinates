@@ -80,7 +80,8 @@ a {
     color: #fff;
 }
 
-button {
+button, 
+:where(geolocation) {
     width: 100%;
     font-size: 1.5em;
     text-transform: none;
