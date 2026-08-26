@@ -38,7 +38,7 @@
       "type": "image/webp"
     }
   ],
-  "start_url": "/colordinates/",
+  "start_url": "./",
   "display": "standalone",
   "theme_color": "#699da0",
   "background_color": "#699da0"
