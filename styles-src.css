@@ -80,15 +80,18 @@ a {
     color: #fff;
 }
 
-button {
+button, 
+:where(geolocation) {
     width: 100%;
+    width: stretch;
     font-size: 1.5em;
     text-transform: none;
     -webkit-appearance: button;
     cursor: pointer;
     text-align: center;
     color: #588A92;
-    background: #fff
+    background: #fff;
+    border-color: transparent;
 }
 
 .txt-small {

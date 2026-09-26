@@ -94,7 +94,11 @@ if (navigator.geolocation) {
     domOutput.style.backgroundColor = domOutputcolour;
   }
 
-  domButton.addEventListener('click', fetchGeo, false);
+  if (typeof HTMLGeolocationElement === "function") {
+    document.querySelector('geolocation').addEventListener('location', fetchGeo, false);
+  } else {
+    domButton.addEventListener('click', fetchGeo, false);
+  }
 
 } else {
   userFeedback('This app uses features not supported by your browser');
