@@ -54,16 +54,17 @@ if (navigator.geolocation) {
     domColorvalue.textContent = 'Finding…';
   }
 
-  function errorFeedback(error) {
-    if (window.isSecureContext === false || error.message.indexOf('Only secure origins are allowed') == 0) {
-      userFeedback('Browser prevents geolocation use via non-secure (HTTP) page');
-    }
-    else {
-      if (navigator.permissions) {
-        getPermissions();
-      } else {
-        userFeedback("Geolocation failed! Check settings and signal. Reload page and try again");
-      }
+  function errorFeedback(error) {  
+    switch (error.code) {
+    case error.PERMISSION_DENIED:    
+      getPermissions();
+    break;            
+    case error.TIMEOUT:            
+      userFeedback('Geolocation timed out! Check settings and signal. Reload page and try again');            
+    break;        
+    default:            
+      userFeedback('Geolocation failed! Check settings and signal. Reload page and try again'); 
+    break;   
     }
   }
 
